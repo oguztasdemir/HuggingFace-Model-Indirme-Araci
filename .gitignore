@@ -38,3 +38,6 @@ env/
 # Local settings or secrets
 .env
 settings.json
+chat_history.json
+favorites.json
+
