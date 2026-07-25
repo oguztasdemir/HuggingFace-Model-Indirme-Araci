@@ -1,0 +1,24 @@
+[
+    {
+        "session_id": "1fa3a1de",
+        "title": "selam, nsfw içerik çıkaran kaç",
+        "created_at": "25.07.2026 13:20",
+        "messages": [
+            {
+                "sender": "cortex",
+                "text": "Merhaba! Ben Cortex AI Yapay Zeka Asistanınız.\nNasıl bir model veya yapay zeka görevi aradığınızı söyleyin, size en uygun projeleri ve doğrudan indirme bağlantılarını sunayım!",
+                "timestamp": "13:20"
+            },
+            {
+                "sender": "user",
+                "text": "selam, nsfw içerik çıkaran kaç adet model var huggingfacede",
+                "timestamp": "13:21"
+            },
+            {
+                "sender": "cortex",
+                "text": "Merhaba! Ben Cortex AI sizin yapay zeka asistanınız. NSFW (Not Safe For Work) içerik çıkaran modelleri arıyorsunuz. Hugging Face platformunda birçok NSFW modelleri mevcuttur.\n\nÖrneğin, 'CompVis/stable-diffusion' modeli, resim oluşturma ve NSFW içeriğe sahip görüntüler çıkarabilme yeteneğine sahiptir.\n\nDaha spesifik NSFW içerik çıkaran modellerden bazıları:\n- 'stabilityai/stable-diffusion-2-1'\nBu model, resimler oluşturmak ve NSFW içeriği çıkarabilmektir.",
+                "timestamp": "13:21"
+            }
+        ]
+    }
+]
