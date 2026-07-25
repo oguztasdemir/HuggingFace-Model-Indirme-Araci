@@ -125,18 +125,18 @@ def parse_hf_url(url):
 
     return None, None
 
-def get_repo_details(repo_id, repo_type="model"):
+def get_repo_details(repo_id, repo_type="model", token=None):
     """
-    Fetches the list of files and metadata for the given repo.
+    Fetches the list of files and metadata for the given repo using optional HF token.
     """
-    api = HfApi()
+    api = HfApi(token=token if token else None)
     files = []
     total_size = 0
     try:
         if repo_type == "dataset":
-            info = api.dataset_info(repo_id, files_metadata=True)
+            info = api.dataset_info(repo_id, files_metadata=True, token=token if token else None)
         else:
-            info = api.model_info(repo_id, files_metadata=True)
+            info = api.model_info(repo_id, files_metadata=True, token=token if token else None)
 
         if info.siblings:
             for sibling in info.siblings:
@@ -160,17 +160,18 @@ def get_repo_details(repo_id, repo_type="model"):
             "error": str(e)
         }
 
-def scrape_readme(repo_id, repo_type="model"):
+def scrape_readme(repo_id, repo_type="model", token=None):
     """
-    Scrapes the README of the repo.
+    Scrapes the README of the repo using optional token headers.
     """
+    headers = {"Authorization": f"Bearer {token}"} if token else {}
     url = f"https://huggingface.co/{'datasets/' if repo_type == 'dataset' else ''}{repo_id}/raw/main/README.md"
     try:
-        res = requests.get(url, timeout=10)
+        res = requests.get(url, headers=headers, timeout=10)
         if res.status_code == 200:
             return res.text
         url_master = f"https://huggingface.co/{'datasets/' if repo_type == 'dataset' else ''}{repo_id}/raw/master/README.md"
-        res_master = requests.get(url_master, timeout=10)
+        res_master = requests.get(url_master, headers=headers, timeout=10)
         if res_master.status_code == 200:
             return res_master.text
     except Exception:
@@ -178,7 +179,7 @@ def scrape_readme(repo_id, repo_type="model"):
 
     try:
         web_url = f"https://huggingface.co/{'datasets/' if repo_type == 'dataset' else ''}{repo_id}"
-        res = requests.get(web_url, timeout=10)
+        res = requests.get(web_url, headers=headers, timeout=10)
         if res.status_code == 200:
             soup = BeautifulSoup(res.text, 'html.parser')
             text = soup.get_text()
@@ -190,12 +191,12 @@ def scrape_readme(repo_id, repo_type="model"):
 
     return ""
 
-def search_hf_hub(query="", filter_tag=None, sort_by="downloads", limit=30):
+def search_hf_hub(query="", filter_tag=None, sort_by="downloads", limit=30, token=None):
     """
-    Searches models/datasets on Hugging Face Hub using text query and category filters.
+    Searches models/datasets on Hugging Face Hub using text query, category filters, and optional token.
     Supports intent matching for natural Turkish/English queries.
     """
-    api = HfApi()
+    api = HfApi(token=token if token else None)
     results = []
 
     detected_tag = filter_tag

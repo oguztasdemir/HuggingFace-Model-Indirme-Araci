@@ -25,6 +25,10 @@ def load_settings():
 
     if "download_dir" not in settings:
         settings["download_dir"] = ""
+    if "hf_token" not in settings:
+        settings["hf_token"] = ""
+    if "language" not in settings:
+        settings["language"] = "tr"
 
     return settings
 
