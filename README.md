@@ -1,5 +1,8 @@
 # 🤗 Hugging Face Hub Analyzer & One-Click Downloader
 
+[![CI Tests](https://github.com/oguztasdemir/HuggingFace-Model-Indirme-Araci/actions/workflows/ci.yml/badge.svg)](https://github.com/oguztasdemir/HuggingFace-Model-Indirme-Araci/actions/workflows/ci.yml)
+
+
 Hugging Face platformundaki yapay zeka modellerini ve veri kümelerini (datasets) incelemek, yerel Ollama yapay zekası ile Türkçe özetler almak, bilgisayarınıza **tek tıkla indirmek** ve disk alanınızı canlı olarak yönetmek için geliştirilmiş modern bir masaüstü uygulamasıdır.
 
 ![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)
@@ -57,3 +60,15 @@ Ayarlar sekmesinden tercih ettiğiniz sabit indirme klasörünü (Örn: `E:\hugg
 ## 📜 Lisans
 
 Bu proje [MIT Lisansı](LICENSE) altında lisanslanmıştır.
+
+
+---
+
+## Yerel Testler
+
+Projenin temel çalışma ve sözdizimi doğrulama testlerini çalıştırmak için:
+
+```bash
+pip install pytest
+pytest tests -v
+```
